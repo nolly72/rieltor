@@ -1,4 +1,4 @@
-// --- ИНТЕГРАЦИЯ С ВАШЕЙ GOOGLE ТАБЛИЦЕЙ ---
+// --- ИНТЕГРАЦИЯ С ВАШЕЙ. GOOGLE ТАБЛИЦЕЙ ---
 const SHEET_ID = '1vRxp_DgpWaW_EdGioUzRVe81YWIiSNTsX5kbq0FibgyfxEnqsJOuOVcMzKyPUy3XcpSfco2BXHHohLe';
 const SHEET_TITLE = 'Лист1'; 
 const SPREADSHEET_URL = `https://google.com{SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_TITLE}`;
