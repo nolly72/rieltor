@@ -1,7 +1,6 @@
-// --- ИНТЕГРАЦИЯ С ВАШЕЙ. GOOGLE ТАБЛИЦЕЙ ---
-const SHEET_ID = '1vRxp_DgpWaW_EdGioUzRVe81YWIiSNTsX5kbq0FibgyfxEnqsJOuOVcMzKyPUy3XcpSfco2BXHHohLe';
-const SHEET_TITLE = 'Лист1'; 
-const SPREADSHEET_URL = `https://google.com{SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_TITLE}`;
+// --- ИНТЕГРАЦИЯ С ВАШЕЙ ОПУБЛИКОВАННОЙ ТАБЛИЦЕЙ (ИСПРАВЛЕНО) ---
+// Мы используем специальный формат tsv для опубликованных ссылок, чтобы обойти любые ошибки парсинга
+const SPREADSHEET_URL = 'https://google.com';
 
 async function fetchObjectsFromSheet() {
     const catalogGrid = document.getElementById('catalogGrid');
@@ -10,27 +9,35 @@ async function fetchObjectsFromSheet() {
     try {
         const response = await fetch(SPREADSHEET_URL);
         const text = await response.text();
-        const jsonData = JSON.parse(text.substr(47).slice(0, -2));
-        const rows = jsonData.table.rows;
         
+        // Разбиваем полученную таблицу на строки и ячейки
+        const lines = text.split('\n');
         catalogGrid.innerHTML = ''; 
 
-        rows.forEach(row => {
-            if (!row.c || !row.c[0]) return; // Пропускаем пустые строки
+        // Перебираем строки, пропуская первую строку с заголовками (title, price...)
+        for (let i = 1; i < lines.length; i++) {
+            if (!lines[i].trim()) continue; // Пропускаем пустые строки
+            
+            const columns = lines[i].split('\t');
+            
+            const title = columns[0] ? columns[0].trim() : 'Без названия';
+            const price = columns[1] ? columns[1].trim() : '0';
+            const desc = columns[2] ? columns[2].trim() : '';
+            let image = columns[3] ? columns[3].trim() : '';
+            const tag = columns[4] ? columns[4].trim() : 'Объект';
 
-            const title = row.c[0] ? row.c[0].v : 'Без названия';
-            const price = row.c[1] ? row.c[1].v : 0;
-            const desc = row.c[2] ? row.c[2].v : '';
-            let image = row.c[3] ? row.c[3].v : '';
-            const tag = row.c[4] ? row.c[4].v : 'Объект';
-
+            // Автоматическое исправление ссылок Яндекс Диска
             if (image.includes('disk.yandex.ru')) {
                 image = image.replace('/i/', '/download/');
             }
 
-            const formattedPrice = typeof price === 'number' 
-                ? price.toLocaleString('ru-RU') + ' ₽' 
-                : price + ' ₽';
+            // Форматируем цену для красивого вида
+            let formattedPrice = price;
+            if (!isNaN(price.replace(/\s/g, ''))) {
+                formattedPrice = Number(price.replace(/\s/g, '')).toLocaleString('ru-RU') + ' ₽';
+            } else {
+                formattedPrice = price + ' ₽';
+            }
 
             const cardHTML = `
                 <div class="apartment-card">
@@ -46,14 +53,14 @@ async function fetchObjectsFromSheet() {
                 </div>
             `;
             catalogGrid.insertAdjacentHTML('beforeend', cardHTML);
-        });
+        }
     } catch (error) {
         console.error('Ошибка выгрузки каталога:', error);
+        catalogGrid.innerHTML = '<p style="color: var(--gray); text-align: center; grid-column: 1/-1;">Не удалось загрузить объекты.</p>';
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Вызов функции загрузки квартир из таблицы
     fetchObjectsFromSheet();
 
     // --- ЛОГИКА МОДАЛЬНОГО ОКНА ДЛЯ ЗАЯВОК ---
@@ -117,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (query.includes('сити') || query.includes('апартамент') || query.includes('центр')) {
             return "В Москва-Сити сейчас есть 3 закрытых пентхауса с окупаемостью от 9% годовых. Оставьте заявку на презентацию!";
         }
-        return "Отличный запрос. Я передал критерии Александру Громову. Оставьте контакты в форме на сайте, и он свяжется с вами лично!";
+        return "Отличный запрос. Я передал критерии Александра Громову. Оставьте контакты в форме на сайте, и он свяжется с вами лично!";
     }
 
     sendAiMessage.addEventListener('click', handleAiSend);

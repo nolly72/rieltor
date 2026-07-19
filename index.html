@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Александр Громов | Элитная Недвижимость & ИИ-Интеграция</title>
-    <!-- Подключаем иконки FontAwesome для красоты -->
+    <!-- ИСПРАВЛЕННАЯ ССЫЛКА НА ИКОНКИ FONTAWESOME -->
     <link rel="stylesheet" href="https://cloudflare.com">
-    <!-- Стили будут в отдельном файле, который мы сделаем следующим шагом -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ФОНОВЫЕ НЕОНОВЫЕ СВЕЧЕНИЯ (BLUR SPARKS) -->
+    <!-- ФОНОВЫЕ НЕОНОВЫЕ СВЕЧЕНИЯ -->
     <div class="neon-glow glow-1"></div>
     <div class="neon-glow glow-2"></div>
 
-    <!-- ШАПКА САЙТА (NAVIGATION) -->
+    <!-- ШАПКА САЙТА -->
     <header class="header">
         <div class="logo">GROMOV<span>.REALTY</span></div>
         <nav class="nav">
@@ -25,7 +24,7 @@
         </nav>
     </header>
 
-    <!-- ГЛАВНЫЙ ЭКРАН (HERO SECTION) -->
+    <!-- ГЛАВНЫЙ ЭКРАН -->
     <section class="hero">
         <div class="hero-content">
             <div class="badge"><i class="fa-solid fa-shield-halved"></i> 12+ лет на рынке элитного жилья</div>
@@ -37,7 +36,6 @@
             </div>
         </div>
         <div class="hero-image-container">
-            <!-- Сюда вы вставите фото риелтора Александра (мужчина в костюме) -->
             <div class="hero-image" style="background-image: url('avatar.jpg');"></div>
             <div class="floating-card">
                 <i class="fa-solid fa-bolt text-blue"></i>
@@ -49,45 +47,20 @@
         </div>
     </section>
 
-    <!-- КАТАЛОГ ОБЪЕКТОВ (ЗДЕСЬ БУДЕТ ВЫГРУЗКА ИЗ ТАБЛИЦЫ) -->
+    <!-- КАТАЛОГ ОБЪЕКТОВ С АВТОВЫГРУЗКОЙ ИЗ GOOGLE ТАБЛИЦЫ -->
     <section id="catalog" class="catalog-section">
         <div class="section-header">
             <h2>Актуальные предложения</h2>
             <p>Объекты, доступные для покупки прямо сейчас</p>
         </div>
         
-        <!-- Сюда JS автоматически вставит карточки из Google Таблицы. 
-             Пока таблица не подключена, тут будут временные карточки из локальных файлов -->
+        <!-- Контейнер чистый, сюда всё вставит ваш JS из таблицы -->
         <div class="catalog-grid" id="catalogGrid">
-            
-            <!-- Локальная карточка 1 -->
-            <div class="apartment-card">
-                <div class="card-image" style="background-image: url('app1.jpg');"></div>
-                <div class="card-info">
-                    <span class="card-tag">Пентхаус</span>
-                    <h3>High-Tech Апартаменты в Сити</h3>
-                    <p class="card-price">125 000 000 ₽</p>
-                    <p class="card-desc">Панорамное остекление, система «Умный дом», премиальная отделка из редких пород камня.</p>
-                    <button class="btn-view" onclick="openModal('High-Tech Апартаменты в Сити')">Узнать подробнее</button>
-                </div>
-            </div>
-
-            <!-- Локальная карточка 2 -->
-            <div class="apartment-card">
-                <div class="card-image" style="background-image: url('app2.jpg');"></div>
-                <div class="card-info">
-                    <span class="card-tag">Резиденция</span>
-                    <h3>Вилла у воды «Neo-Classic»</h3>
-                    <p class="card-price">340 000 000 ₽</p>
-                    <p class="card-desc">Собственный причал, закрытая охраняемая территория, дизайнерский интерьер от миланской студии.</p>
-                    <button class="btn-view" onclick="openModal('Вилла у воды Neo-Classic')">Узнать подробнее</button>
-                </div>
-            </div>
-
+            <p style="color: var(--gray); text-align: center; grid-column: 1/-1;">Загрузка эксклюзивных объектов...</p>
         </div>
     </section>
 
-    <!-- ФОРМА ЗАЯВКИ (CONTACT SECTION) -->
+    <!-- ФОРМА ЗАЯВКИ -->
     <section id="contact" class="contact-section">
         <div class="contact-container">
             <div class="contact-info">
@@ -102,14 +75,14 @@
                 <form id="realtyForm" onsubmit="handleFormSubmit(event)">
                     <input type="text" name="clientName" placeholder="Ваше имя" required>
                     <input type="tel" name="clientPhone" placeholder="Номер телефона" required>
-                    <input type="text" name="clientBudget" placeholder="Ваш планируемый бюджет (₽)">
+                    <input type="text" name="clientBudget" placeholder="Ваш планируемый budget (₽)">
                     <button type="submit" class="btn btn-primary btn-full">Отправить заявку <i class="fa-solid fa-paper-plane"></i></button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- ПОДВАЛ (FOOTER) -->
+    <!-- ПОДВАЛ -->
     <footer class="footer">
         <p>&copy; 2026 GROMOV.REALTY. Все права защищены. Разработано в современном стиле.</p>
     </footer>
@@ -128,13 +101,12 @@
         </div>
     </div>
 
-    <!-- КНОПКА ИИ-АССИСТЕНТА (ФЛОАТИНГ) -->
+    <!-- КНОПКА ИИ-АССИСТЕНТА -->
     <div class="ai-assistant-widget" id="aiWidget">
         <div class="ai-button" id="aiButton">
             <i class="fa-solid fa-brain"></i>
             <span>ИИ Ассистент</span>
         </div>
-        <!-- Окно чата с ИИ -->
         <div class="ai-chat-window" id="aiChatWindow">
             <div class="ai-chat-header">
                 <h4><i class="fa-solid fa-robot"></i> Громов ИИ-Бот</h4>
@@ -150,7 +122,6 @@
         </div>
     </div>
 
-    <!-- Подключаем будущий скрипт js -->
     <script src="script.js"></script>
 </body>
 </html>
