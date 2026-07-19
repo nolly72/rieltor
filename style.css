@@ -1,0 +1,121 @@
+/* --- СБРОС И ПЕРЕМЕННЫЕ --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root {
+    --bg: #030712; --card: rgba(17,24,39,0.7);
+    --blue: #3b82f6; --text: #fff; --gray: #9ca3af;
+}
+body {
+    background: var(--bg); color: var(--text);
+    font-family: system-ui, sans-serif; overflow-x: hidden;
+}
+
+/* --- СВЕЧЕНИЯ И ШАПКА --- */
+.neon-glow {
+    position: fixed; width: 60vw; height: 60vw; border-radius: 50%;
+    pointer-events: none; z-index: 0; filter: blur(140px); opacity: 0.15;
+}
+.glow-1 { top: -20%; right: -10%; background: radial-gradient(circle, var(--blue) 0%, transparent 70%); }
+.glow-2 { bottom: -20%; left: -10%; background: radial-gradient(circle, #1d4ed8 0%, transparent 70%); }
+
+.header {
+    position: fixed; top: 0; left: 0; width: 100%; padding: 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 1000; background: rgba(3,7,18,0.6); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.logo { font-size: 20px; font-weight: 800; }
+.logo span { color: var(--blue); }
+.nav { display: flex; align-items: center; gap: 20px; }
+.nav a { color: var(--text); text-decoration: none; font-size: 14px; }
+.btn-nav { border: 1px solid var(--blue); padding: 6px 14px; border-radius: 20px; }
+
+/* --- ГЛАВНЫЙ ЭКРАН (HERO) --- */
+.hero {
+    min-height: 100vh; padding: 120px 20px 40px; display: flex;
+    align-items: center; justify-content: space-between; gap: 40px;
+    max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
+}
+.hero-content { flex: 1; max-width: 600px; }
+.badge {
+    display: inline-flex; background: rgba(255,255,255,0.05);
+    padding: 6px 12px; border-radius: 30px; font-size: 11px;
+    margin-bottom: 20px; color: var(--blue); text-transform: uppercase;
+}
+.hero h1 { font-size: 42px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+.text-gradient { background: linear-gradient(135deg, #fff, var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-lead { color: var(--gray); margin-bottom: 30px; }
+.hero-actions { display: flex; gap: 15px; }
+
+/* КНОПКИ */
+.btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px;
+    border-radius: 30px; font-size: 14px; font-weight: 600;
+    text-decoration: none; cursor: pointer; transition: all 0.3s;
+}
+.btn-primary { background: var(--blue); color: #000; border: none; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(59,130,246,0.4); }
+.btn-secondary { background: rgba(255,255,255,0.03); color: var(--text); border: 1px solid rgba(255,255,255,0.1); }
+
+.hero-image-container { flex: 1; position: relative; display: flex; justify-content: center; }
+.hero-image { width: 320px; height: 420px; background-size: cover; background-position: center; background-color: #111; border-radius: 24px; }
+.floating-card {
+    position: absolute; bottom: 20px; left: -10px; background: rgba(3,7,18,0.8);
+    backdrop-filter: blur(12px); border: 1px solid rgba(59,130,246,0.2);
+    padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; gap: 12px;
+}
+
+/* --- КАТАЛОГ И КАРТОЧКИ --- */
+.catalog-section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.section-header { text-align: center; margin-bottom: 50px; }
+.section-header h2 { font-size: 32px; margin-bottom: 10px; }
+.catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+.apartment-card { background: var(--card); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; overflow: hidden; transition: all 0.3s; }
+.apartment-card:hover { transform: translateY(-5px); border-color: var(--blue); }
+.card-image { height: 200px; background-size: cover; background-position: center; background-color: #222; position: relative; }
+.card-tag { position: absolute; top: 12px; left: 12px; background: #030712; border: 1px solid var(--blue); padding: 4px 10px; border-radius: 10px; font-size: 10px; }
+.card-info { padding: 20px; }
+.card-price { color: var(--blue); font-size: 20px; font-weight: 800; margin: 10px 0; }
+.card-desc { color: var(--gray); font-size: 13px; margin-bottom: 15px; }
+.btn-view { width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 10px; border-radius: 10px; cursor: pointer; }
+.btn-view:hover { background: var(--blue); color: #000; }
+
+/* --- ФОРМА И МОДАЛКА --- */
+.contact-section { padding: 80px 20px; position: relative; z-index: 1; }
+.contact-container { max-width: 1000px; margin: 0 auto; display: flex; gap: 40px; align-items: center; }
+.contact-info, .contact-form-box { flex: 1; }
+.contact-form-box { background: var(--card); padding: 30px; border-radius: 20px; }
+.contact-methods { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+input { width: 100%; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; color: #fff; margin-bottom: 15px; outline: none; }
+input:focus { border-color: var(--blue); }
+.btn-full { width: 100%; justify-content: center; }
+.footer { padding: 30px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--gray); font-size: 12px; }
+
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3,7,18,0.8); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 2000; }
+.modal-window { background: #0b0f19; border: 1px solid var(--blue); padding: 30px; border-radius: 20px; width: 100%; max-width: 400px; position: relative; }
+.modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
+
+/* --- ИИ АССИСТЕНТ --- */
+.ai-assistant-widget { position: fixed; bottom: 20px; right: 20px; z-index: 5000; }
+.ai-button { background: var(--blue); color: #000; padding: 12px 20px; border-radius: 30px; display: flex; align-items: center; gap: 8px; font-weight: 700; cursor: pointer; }
+.ai-chat-window { position: absolute; bottom: 60px; right: 0; width: 300px; height: 400px; background: #0b0f19; border: 1px solid var(--blue); border-radius: 16px; display: none; flex-direction: column; overflow: hidden; }
+.ai-chat-header { background: rgba(59,130,246,0.1); padding: 12px; display: flex; justify-content: space-between; align-items: center; }
+.ai-chat-header button { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; }
+.ai-chat-body { flex: 1; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.message { padding: 8px 12px; border-radius: 12px; font-size: 13px; max-width: 85%; }
+.message.bot { background: rgba(255,255,255,0.05); align-self: flex-start; }
+.message.user { background: var(--blue); color: #000; align-self: flex-end; }
+.ai-chat-footer { padding: 10px; display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,0.05); }
+.ai-chat-footer input { margin-bottom: 0; padding: 8px; border-radius: 8px; }
+.ai-chat-footer button { background: var(--blue); border: none; padding: 0 12px; border-radius: 8px; cursor: pointer; }
+
+/* --- МОБИЛЬНАЯ АДАПТАЦИЯ --- */
+@media (max-width: 868px) {
+    .hero { flex-direction: column; text-align: center; padding-top: 100px; }
+    .hero-actions { justify-content: center; }
+    .hero-image { width: 100%; max-width: 280px; height: 350px; }
+    .floating-card { left: 50%; transform: translateX(-50%); bottom: -10px; }
+    .contact-container { flex-direction: column; }
+    .nav a:not(.btn-nav) { display: none; }
+    .catalog-section, .contact-section { padding: 40px 15px; }
+}

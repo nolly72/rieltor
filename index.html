@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Александр Громов | Элитная Недвижимость & ИИ-Интеграция</title>
+    <!-- Подключаем иконки FontAwesome для красоты -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Стили будут в отдельном файле, который мы сделаем следующим шагом -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ФОНОВЫЕ НЕОНОВЫЕ СВЕЧЕНИЯ (BLUR SPARKS) -->
+    <div class="neon-glow glow-1"></div>
+    <div class="neon-glow glow-2"></div>
+
+    <!-- ШАПКА САЙТА (NAVIGATION) -->
+    <header class="header">
+        <div class="logo">GROMOV<span>.REALTY</span></div>
+        <nav class="nav">
+            <a href="#about">Обо мне</a>
+            <a href="#catalog">Объекты</a>
+            <a href="#contact" class="btn-nav">Оставить заявку</a>
+        </nav>
+    </header>
+
+    <!-- ГЛАВНЫЙ ЭКРАН (HERO SECTION) -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge"><i class="fa-solid fa-shield-halved"></i> 12+ лет на рынке элитного жилья</div>
+            <h1>Инвестиции в<br><span class="text-gradient">будущее.</span> Недвижимость высокого класса.</h1>
+            <p class="hero-lead">Индивидуальный подбор апартаментов и пентхаусов с использованием прогнозных ИИ-моделей аналитики цен в РФ.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Подобрать объект <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#catalog" class="btn btn-secondary">Смотреть каталог</a>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <!-- Сюда вы вставите фото риелтора Александра (мужчина в костюме) -->
+            <div class="hero-image" style="background-image: url('avatar.jpg');"></div>
+            <div class="floating-card">
+                <i class="fa-solid fa-bolt text-blue"></i>
+                <div>
+                    <h4>₽ 450 млн+</h4>
+                    <p>Объем сделок за 2025 год</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КАТАЛОГ ОБЪЕКТОВ (ЗДЕСЬ БУДЕТ ВЫГРУЗКА ИЗ ТАБЛИЦЫ) -->
+    <section id="catalog" class="catalog-section">
+        <div class="section-header">
+            <h2>Актуальные предложения</h2>
+            <p>Объекты, доступные для покупки прямо сейчас</p>
+        </div>
+        
+        <!-- Сюда JS автоматически вставит карточки из Google Таблицы. 
+             Пока таблица не подключена, тут будут временные карточки из локальных файлов -->
+        <div class="catalog-grid" id="catalogGrid">
+            
+            <!-- Локальная карточка 1 -->
+            <div class="apartment-card">
+                <div class="card-image" style="background-image: url('app1.jpg');"></div>
+                <div class="card-info">
+                    <span class="card-tag">Пентхаус</span>
+                    <h3>High-Tech Апартаменты в Сити</h3>
+                    <p class="card-price">125 000 000 ₽</p>
+                    <p class="card-desc">Панорамное остекление, система «Умный дом», премиальная отделка из редких пород камня.</p>
+                    <button class="btn-view" onclick="openModal('High-Tech Апартаменты в Сити')">Узнать подробнее</button>
+                </div>
+            </div>
+
+            <!-- Локальная карточка 2 -->
+            <div class="apartment-card">
+                <div class="card-image" style="background-image: url('app2.jpg');"></div>
+                <div class="card-info">
+                    <span class="card-tag">Резиденция</span>
+                    <h3>Вилла у воды «Neo-Classic»</h3>
+                    <p class="card-price">340 000 000 ₽</p>
+                    <p class="card-desc">Собственный причал, закрытая охраняемая территория, дизайнерский интерьер от миланской студии.</p>
+                    <button class="btn-view" onclick="openModal('Вилла у воды Neo-Classic')">Узнать подробнее</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ФОРМА ЗАЯВКИ (CONTACT SECTION) -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Начнем подбор идеального объекта?</h2>
+                <p>Оставьте контакты. Я свяжусь с вами лично в течение 10 минут, чтобы предложить закрытые объекты, которых нет в открытом доступе.</p>
+                <div class="contact-methods">
+                    <div class="method"><i class="fa-solid fa-phone text-blue"></i> +7 (999) 000-00-00</div>
+                    <div class="method"><i class="fa-solid fa-envelope text-blue"></i> alex@gromov.realty</div>
+                </div>
+            </div>
+            <div class="contact-form-box">
+                <form id="realtyForm" onsubmit="handleFormSubmit(event)">
+                    <input type="text" name="clientName" placeholder="Ваше имя" required>
+                    <input type="tel" name="clientPhone" placeholder="Номер телефона" required>
+                    <input type="text" name="clientBudget" placeholder="Ваш планируемый бюджет (₽)">
+                    <button type="submit" class="btn btn-primary btn-full">Отправить заявку <i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ (FOOTER) -->
+    <footer class="footer">
+        <p>&copy; 2026 GROMOV.REALTY. Все права защищены. Разработано в современном стиле.</p>
+    </footer>
+
+    <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ЗАЯВКИ ПО КОНКРЕТНОМУ ОБЪЕКТУ -->
+    <div class="modal-overlay" id="realtyModal">
+        <div class="modal-window">
+            <button class="modal-close" id="closeModalBtn">&times;</button>
+            <h3>Узнать подробнее об объекте</h3>
+            <p id="modalObjectName" class="text-blue" style="font-weight: 600; margin-bottom: 20px;"></p>
+            <form onsubmit="handleModalSubmit(event)">
+                <input type="text" placeholder="Ваше имя" required>
+                <input type="tel" placeholder="Телефон для связи" required>
+                <button type="submit" class="btn btn-primary" style="width:100%">Получить презентацию</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- КНОПКА ИИ-АССИСТЕНТА (ФЛОАТИНГ) -->
+    <div class="ai-assistant-widget" id="aiWidget">
+        <div class="ai-button" id="aiButton">
+            <i class="fa-solid fa-brain"></i>
+            <span>ИИ Ассистент</span>
+        </div>
+        <!-- Окно чата с ИИ -->
+        <div class="ai-chat-window" id="aiChatWindow">
+            <div class="ai-chat-header">
+                <h4><i class="fa-solid fa-robot"></i> Громов ИИ-Бот</h4>
+                <button id="closeAiChat">&times;</button>
+            </div>
+            <div class="ai-chat-body">
+                <div class="message bot">Привет! Я виртуальный ассистент Александра Громова. Какой тип недвижимости или район вас интересует?</div>
+            </div>
+            <div class="ai-chat-footer">
+                <input type="text" id="aiInput" placeholder="Задайте вопрос ИИ...">
+                <button id="sendAiMessage"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подключаем будущий скрипт js -->
+    <script src="script.js"></script>
+</body>
+</html>
