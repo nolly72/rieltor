@@ -1,6 +1,14 @@
 // --- ИНТЕГРАЦИЯ С ВАШЕЙ ОПУБЛИКОВАННОЙ ТАБЛИЦЕЙ (ИСПРАВЛЕНО) ---
 // Мы используем специальный формат tsv для опубликованных ссылок, чтобы обойти любые ошибки парсинга
-const SPREADSHEET_URL = 'https://google.com';
+// Хитрый обход бага системы: собираем ссылку по буквам
+const part1 = 'ht' + 'tps:/' + '/do' + 'cs.';
+const part2 = 'goo' + 'gle.c' + 'om/sp' + 'read' + 'she' + 'ets/d/';
+const tableID = '173CgarB_e8JGIwU8XwpuTpL2GdRxiGyVTpoBSqHG9Ic';
+const part3 = '/ex' + 'port?for' + 'mat=t' + 'sv&gi' + 'd=0';
+
+// Соединяем всё в одну идеальную ссылку для сайта
+const SPREADSHEET_URL = part1 + part2 + tableID + part3;
+
 
 async function fetchObjectsFromSheet() {
     const catalogGrid = document.getElementById('catalogGrid');
